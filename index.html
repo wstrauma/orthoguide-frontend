@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 24.2.7.2 (Linux)"/>
+	<meta name="created" content="2025-09-03T18:37:55.905773919"/>
+	<meta name="changed" content="2025-09-03T18:38:36.984101292"/>
+	<style type="text/css">
+		@page { size: 21cm 29.7cm; margin: 2cm }
+		p { line-height: 115%; margin-bottom: 0.25cm; background: transparent }
+	</style>
+</head>
+<body lang="pl-PL" link="#000080" vlink="#800000" dir="ltr"><p style="line-height: 100%; margin-bottom: 0cm">
+&lt;!doctype html&gt;&lt;meta charset=&quot;utf-8&quot;&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;title&gt;OrthoGuide
+– chat&lt;/title&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;style&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  body{font:16px
+system-ui;margin:2rem;max-width:720px}</p>
+<p style="line-height: 100%; margin-bottom: 0cm"> 
+textarea{width:100%;height:90px}</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  .msg{margin:.6rem
+0;padding:.7rem;border-radius:8px}</p>
+<p style="line-height: 100%; margin-bottom: 0cm"> 
+.user{background:#e3f2fd;text-align:right}</p>
+<p style="line-height: 100%; margin-bottom: 0cm"> 
+.bot{background:#f1f8e9;white-space:pre-wrap}</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;/style&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;h1&gt;🤖
+OrthoGuide&lt;/h1&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;div
+id=&quot;chat&quot;&gt;&lt;/div&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;textarea id=&quot;q&quot;
+placeholder=&quot;Escribe tu pregunta...&quot;&gt;&lt;/textarea&gt;&lt;br&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;button
+onclick=&quot;send()&quot;&gt;Enviar&lt;/button&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;script&gt;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">const API_URL =
+&quot;https://TWÓJ-BACKEND-RENDER.onrender.com&quot;; // &lt;--
+podmień po deployu backendu</p>
+<p style="line-height: 100%; margin-bottom: 0cm">function
+add(t,w){const d=document.createElement('div');d.className='msg
+'+w;d.textContent=t;document.getElementById('chat').appendChild(d);d.scrollIntoView();}</p>
+<p style="line-height: 100%; margin-bottom: 0cm">async function
+send(){</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  const
+box=document.getElementById('q'); const q=box.value.trim(); if(!q)
+return;</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  add(q,'user');
+box.value='';</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  try{</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    const r=await
+fetch(API_URL + &quot;/chat&quot;,{</p>
+<p style="line-height: 100%; margin-bottom: 0cm">      method:&quot;POST&quot;,
+headers:{'Content-Type':'application/json'},</p>
+<p style="line-height: 100%; margin-bottom: 0cm">     
+body:JSON.stringify({message:q, language:&quot;es&quot;})</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    });</p>
+<p style="line-height: 100%; margin-bottom: 0cm">    const data=await
+r.json(); add(data.reply,'bot');</p>
+<p style="line-height: 100%; margin-bottom: 0cm">  }catch(e){ add(&quot;⚠️
+Błąd połączenia z serwerem.&quot;,'bot'); }</p>
+<p style="line-height: 100%; margin-bottom: 0cm">}</p>
+<p style="line-height: 100%; margin-bottom: 0cm">&lt;/script&gt;</p>
+</body>
+</html>
